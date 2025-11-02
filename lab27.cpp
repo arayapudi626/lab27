@@ -1,11 +1,15 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <tuple>
 using namespace std;
+
+tuple<int, string, string> villagerData;
+
 
 int main() {
     // declarations
-    map<string, vector<string>> villagerColors;
+    map<string, villagerData> villagers;
 
     // insert elements into the map
     // note how the right-hand side of the assignment are the vector elements
