@@ -31,12 +31,13 @@ int main() {
 
     //menu
     while (true) {
-        cout << "1. Increase Friendship \n";
-        cout << "2. Increase Friendship \n";
+        cout << "1. Add Villager \n";
+        cout << "2. Delete Villager \n";
         cout << "3. Increase Friendship \n";
         cout << "4. Decrease Friendship \n";
         cout << "5. Search for Villager \n";
         cout << "6. Exit \n";
+        cout << "Enter choice: ";
         int c;
         cin >> c;
 
@@ -47,14 +48,25 @@ int main() {
             int level;
             cout << "Villager name: ";
             cin >> name;
-            cout << "Friendship level";
+            cout << "Friendship level: ";
             cin >> level;
             cout << "Species: ";
             cin >> animal;
             cout << "Catchphrase: ";
             cin >> phrase;
-            villagers
+            villagers[name] = villagerData(level, animal, phrase);
+            cout << name << " added" << endl;
+            printVillagers(villagers);
         }
+        else if (c==2){
+            string name;
+            cout << "Villager to delete";
+            cin >> name;
+            villagers.erase(name);
+            cout << name << " deleted" << endl;
+            printVillagers(villagers);
+        }
+
         else if(c==3){
             string name;
             cout << "Villager: ";
