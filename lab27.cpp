@@ -13,7 +13,7 @@ void printVillagers(const map<string, villagerData>& villagers) {
         cout << pair.first << "[ "
         << get<0>(pair.second) << ", "
         << get<1>(pair.second) << ", "
-        << get<2>(pair.second) << ", " << endl;
+        << get<2>(pair.second) << "] " << endl;
     }
 }
 
@@ -25,19 +25,56 @@ int main() {
     // note how the right-hand side of the assignment are the vector elements
     villagers["Audie"] = villagerData(5, "Anteater", "Woo!");
     villagers["Raymond"] = villagerData(9, "Dog", "Lets go");
-    villagers["Raymond"] = villagerData(7, "Bird", "Fire");
+    villagers["Josh"] = villagerData(7, "Bird", "Fire");
   
     printVillagers(villagers);
-    
+
     //menu
     while (true) {
-        cout << "1. Increase Friendship /n";
-        cout << "2. Decrease Friendship /n";
-        cout << "3. Search for Villager /n";
-        cout << "4. Exit /n";
-    }
+        cout << "1. Increase Friendship \n";
+        cout << "2. Decrease Friendship \n";
+        cout << "3. Search for Villager \n";
+        cout << "4. Exit \n";
+        int c;
+        cin >> c;
 
-    // access the map using iterators
+        if(c==1){
+            string name;
+            cout << "Villager: ";
+            cin >> name;
+            map<string, villagerData>::iterator it = villagers.find(name);
+            if (it == villagers.end()){
+                cout << name << " not found." << endl;
+            }
+            else {
+                int level = get<0>(it->second);
+                if (level < 10) level++;
+                get<0>(it->second) = level;
+                cout << name << " now level " << level << endl;
+            }
+            printVillagers(villagers);
+        }
+        else if(c==2){
+            string name;
+            cout << "Villager: ";
+            cin >> name;
+            map<string, villagerData>::iterator it = villagers.find(name);
+            if (it == villagers.end()){
+                cout << name << " not found." << endl;
+            }
+            else {
+                int level = get<0>(it->second);
+                if (level < 10) level--;
+                get<0>(it->second) = level;
+                cout << name << " now level " << level << endl;
+            }
+            printVillagers(villagers);
+        }
+    }
+}
+
+
+    /*// access the map using iterators
     cout << "\nVillagers and their favorite colors (iterators):" << endl;
     for (map<string, vector<string>>::iterator it = villagers.begin(); 
                                                it != villagers.end(); ++it) {
@@ -69,4 +106,4 @@ int main() {
     cout << "Size after clear: " << villagers.size() << endl;
 
     return 0;
-}
+}*/
