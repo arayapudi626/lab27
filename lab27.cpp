@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <tuple>
+#include <string>
 using namespace std;
 
 typedef tuple<int, string, string> villagerData;
@@ -39,7 +40,11 @@ int main() {
         cout << "6. Exit \n";
         cout << "Enter choice: ";
         int c;
-        cin >> c;
+        if (!(cin >> c)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            continue;
+        }
 
         if(c==1){
             string name;
@@ -47,11 +52,12 @@ int main() {
             string phrase;
             int level;
             cout << "Villager name: ";
-            cin >> name;
+            getline(cin, name);
             cout << "Friendship level: ";
             cin >> level;
+            cin.ignore();
             cout << "Species: ";
-            cin >> animal;
+            getline(cin, animal);
             cout << "Catchphrase: ";
             cin >> phrase;
             villagers[name] = villagerData(level, animal, phrase);
@@ -113,9 +119,9 @@ int main() {
                 << get<0>(it->second) << ", "
                 << get<1>(it->second) << ", "
                 << get<2>(it->second) << "] \n";
-
+ printVillagers(villagers);
     }
-     printVillagers(villagers);
+    
 }
 
 else if(c==6){
