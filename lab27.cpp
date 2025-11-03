@@ -6,6 +6,16 @@ using namespace std;
 
 typedef tuple<int, string, string> villagerData;
 
+//print function
+void printVillagers(const map<string, villagerData>& villagers) {
+  cout << "Villagers details: \n" << endl;
+    for (auto pair : villagers) {
+        cout << pair.first << "[ "
+        << get<0>(pair.second) << ", "
+        << get<1>(pair.second) << ", "
+        << get<2>(pair.second) << ", " << endl;
+    }
+}
 
 int main() {
     // declarations
@@ -16,14 +26,15 @@ int main() {
     villagers["Audie"] = villagerData(5, "Anteater", "Woo!");
     villagers["Raymond"] = villagerData(9, "Dog", "Lets go");
     villagers["Raymond"] = villagerData(7, "Bird", "Fire");
-
-    // access the map using a range-based for loop
-    cout << "Villagers details: \n" << endl;
-    for (auto pair : villagers) {
-        cout << pair.first << "[ "
-        << get<0>(pair.second) << ", "
-        << get<1>(pair.second) << ", "
-        << get<2>(pair.second) << ", " << endl;
+  
+    printVillagers(villagers);
+    
+    //menu
+    while (true) {
+        cout << "1. Increase Friendship /n";
+        cout << "2. Decrease Friendship /n";
+        cout << "3. Search for Villager /n";
+        cout << "4. Exit /n";
     }
 
     // access the map using iterators
