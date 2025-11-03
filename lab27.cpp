@@ -42,9 +42,10 @@ int main() {
         int c;
         if (!(cin >> c)) {
             cin.clear();
-            cin.ignore(1000, '\n');
+            cin.ignore();
             continue;
         }
+        cin.ignore();
 
         if(c==1){
             string name;
@@ -59,14 +60,14 @@ int main() {
             cout << "Species: ";
             getline(cin, animal);
             cout << "Catchphrase: ";
-            cin >> phrase;
+            getline(cin, phrase);
             villagers[name] = villagerData(level, animal, phrase);
             cout << name << " added" << endl;
             printVillagers(villagers);
         }
         else if (c==2){
             string name;
-            cout << "Villager to delete";
+            cout << "Villager to delete: ";
             cin >> name;
             villagers.erase(name);
             cout << name << " deleted" << endl;
