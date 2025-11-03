@@ -4,7 +4,7 @@
 #include <tuple>
 using namespace std;
 
-tuple<int, string, string> villagerData;
+typedef tuple<int, string, string> villagerData;
 
 
 int main() {
@@ -13,13 +13,13 @@ int main() {
 
     // insert elements into the map
     // note how the right-hand side of the assignment are the vector elements
-    villagerColors["Audie"] = {"Orange", "Yellow", "Red"};
-    villagerColors["Raymond"] = {"Black", "Gray", "White"};
-    villagerColors.insert({"Marshal", {"Blue", "White", "Black"}});
+    villagers["Audie"] = villagerData(5, "Anteater", "Woo!");
+    villagers["Raymond"] = villagerData(9, "Dog", "Lets go");
+    villagers["Raymond"] = villagerData(7, "Bird", "Fire");
 
     // access the map using a range-based for loop
-    cout << "Villagers and their favorite colors (range-based for loop):" << endl;
-    for (auto pair : villagerColors) {
+    cout << "Villagers details: \n" << endl;
+    for (auto pair : villagers) {
         cout << pair.first << ": ";
         for (auto color : pair.second)
             cout << color << " ";
