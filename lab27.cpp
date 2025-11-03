@@ -8,12 +8,12 @@ typedef tuple<int, string, string> villagerData;
 
 //print function
 void printVillagers(const map<string, villagerData>& villagers) {
-  cout << "Villagers details: \n" << endl;
-    for (auto pair : villagers) {
-        cout << pair.first << "[ "
-        << get<0>(pair.second) << ", "
-        << get<1>(pair.second) << ", "
-        << get<2>(pair.second) << "] " << endl;
+  cout << "Villagers details: " << endl;
+    for (map<string, villagerData>::const_iterator i = villagers.begin(); i != villagers.end(); ++i) {
+        cout << i->first << "[ "
+        << get<0>(i->second) << ", "
+        << get<1>(i->second) << ", "
+        << get<2>(i->second) << "] " << endl;
     }
 }
 
@@ -27,18 +27,35 @@ int main() {
     villagers["Raymond"] = villagerData(9, "Dog", "Lets go");
     villagers["Josh"] = villagerData(7, "Bird", "Fire");
   
-    printVillagers(villagers);
+    //printVillagers(villagers);
 
     //menu
     while (true) {
         cout << "1. Increase Friendship \n";
-        cout << "2. Decrease Friendship \n";
-        cout << "3. Search for Villager \n";
-        cout << "4. Exit \n";
+        cout << "2. Increase Friendship \n";
+        cout << "3. Increase Friendship \n";
+        cout << "4. Decrease Friendship \n";
+        cout << "5. Search for Villager \n";
+        cout << "6. Exit \n";
         int c;
         cin >> c;
 
         if(c==1){
+            string name;
+            string animal;
+            string phrase;
+            int level;
+            cout << "Villager name: ";
+            cin >> name;
+            cout << "Friendship level";
+            cin >> level;
+            cout << "Species: ";
+            cin >> animal;
+            cout << "Catchphrase: ";
+            cin >> phrase;
+            villagers
+        }
+        else if(c==3){
             string name;
             cout << "Villager: ";
             cin >> name;
@@ -54,7 +71,7 @@ int main() {
             }
             printVillagers(villagers);
         }
-        else if(c==2){
+        else if(c==4){
             string name;
             cout << "Villager: ";
             cin >> name;
@@ -70,8 +87,29 @@ int main() {
             }
             printVillagers(villagers);
         }
+
+        else if(c==5){
+            string name;
+            cout << "Search name: ";
+            cin >> name;
+            map<string, villagerData>::iterator it = villagers.find(name);
+            if (it == villagers.end()){
+                cout << name << " not found." << endl;
+            }
+            else {
+                cout << "Found: " << name << "["
+                << get<0>(it->second) << ", "
+                << get<1>(it->second) << ", "
+                << get<2>(it->second) << "] \n";
+
     }
+     printVillagers(villagers);
 }
+
+else if(c==6){
+    break;
+}
+    }
 
 
     /*// access the map using iterators
@@ -104,6 +142,6 @@ int main() {
     cout << "\nSize before clear: " << villagers.size() << endl;
     villagers.clear();
     cout << "Size after clear: " << villagers.size() << endl;
-
+*/
     return 0;
-}*/
+}
